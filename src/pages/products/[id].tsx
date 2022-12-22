@@ -1,10 +1,7 @@
-import { useRouter } from "next/router"
+import { useRouter } from 'next/router'
 
-export default function Products(){
-    
-    const {query} = useRouter()
+export default function Products() {
+  const { query } = useRouter()
 
-    return (
-        <h1>Produtos: {JSON.stringify(query) }</h1>
-    )
+  return <h1>Produtos: {JSON.stringify(query)}</h1>
 }
