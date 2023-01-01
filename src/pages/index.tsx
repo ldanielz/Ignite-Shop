@@ -4,7 +4,12 @@ import Head from 'next/head'
 
 import Image from 'next/image'
 
-import { HomeContainer, Product } from '../styles/pages/home'
+import {
+  ArrowNext,
+  ArrowPrev,
+  HomeContainer,
+  Product,
+} from '../styles/pages/home'
 
 import { useKeenSlider } from 'keen-slider/react'
 
@@ -12,6 +17,7 @@ import Stripe from 'stripe'
 import { stripe } from '../lib/stripe'
 
 import 'keen-slider/keen-slider.min.css'
+import { ArrowLeft, ArrowRight } from 'phosphor-react'
 interface HomeProps {
   products: {
     id: string
@@ -22,7 +28,7 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
-  const [sliderRef] = useKeenSlider({
+  const [sliderRef, instanceRef] = useKeenSlider({
     mode: 'free-snap',
     slides: {
       origin: 'center',
@@ -36,30 +42,49 @@ export default function Home({ products }: HomeProps) {
       <Head>
         <title>Home | Ignite Shop</title>
       </Head>
-
-      <HomeContainer ref={sliderRef} className="keen-slider">
-        {products.map((product) => {
-          return (
-            <Product
-              href={`/product/${product.id}`}
-              key={product.id}
-              className="keen-slider__slide"
-              prefetch={false}
-            >
-              <Image
-                src={product.imageUrl}
-                alt={product.name}
-                width={520}
-                height={480}
-              />
-              <footer>
-                <strong>{product.name}</strong>
-                <span>{product.price}</span>
-              </footer>
-            </Product>
-          )
-        })}
-      </HomeContainer>
+      <div className="navigation-wrapper">
+        <HomeContainer ref={sliderRef} className="keen-slider">
+          {products.map((product) => {
+            return (
+              <Product
+                href={`/product/${product.id}`}
+                key={product.id}
+                className="keen-slider__slide"
+                prefetch={false}
+              >
+                <Image
+                  src={product.imageUrl}
+                  alt={product.name}
+                  width={520}
+                  height={480}
+                />
+                <footer>
+                  <strong>{product.name}</strong>
+                  <span>{product.price}</span>
+                </footer>
+              </Product>
+            )
+          })}
+        </HomeContainer>
+        <>
+          <ArrowPrev>
+            <ArrowLeft
+              size={32}
+              onClick={(e: any) =>
+                e.stopPropagation() || instanceRef.current?.prev()
+              }
+            />
+          </ArrowPrev>
+          <ArrowNext>
+            <ArrowRight
+              size={32}
+              onClick={(e: any) =>
+                e.stopPropagation() || instanceRef.current?.next()
+              }
+            />
+          </ArrowNext>
+        </>
+      </div>
     </>
   )
 }
