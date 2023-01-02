@@ -82,7 +82,7 @@ export const CartProductCard = styled('div', {
   },
 })
 
-export const CartProcuctCardDetails = styled('div', {
+export const CartProductCardDetails = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
@@ -113,6 +113,56 @@ export const CartConfirmationSection = styled('footer', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-end',
+  gap: '0.5rem',
+
+  button: {
+    padding: '20px 32px',
+    gap: '0.75rem',
+    background: '$green300',
+    borderRadius: 8,
+    marginTop: '3.125',
+
+    color: '$white',
+    fontWeight: 700,
+    fontSize: '$md',
+    lineHeight: 1.6,
+  },
 })
-export const CartConfirmationQtd = styled('div', {})
-export const CartConfirmationTotal = styled('div', {})
+export const CartConfirmationQtd = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+
+  fontFamily: 'Roboto',
+  fontWeight: 400,
+  lineHeight: 1.6,
+
+  p: {
+    color: '$gray100',
+    fontSize: '1rem',
+  },
+
+  span: {
+    color: '$gray300',
+    fontSize: '$md',
+  },
+})
+export const CartConfirmationTotal = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+
+  fontFamily: 'Roboto',
+  fontWeight: 700,
+  color: '$gray100',
+
+  p: {
+    fontSize: '$md',
+    lineHeight: 1.6,
+  },
+
+  strong: {
+    fontSize: '$lg',
+    lineHeight: 1.4,
+  },
+})

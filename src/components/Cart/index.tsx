@@ -6,7 +6,7 @@ import {
   CartConfirmationSection,
   CartConfirmationTotal,
   CartContainer,
-  CartProcuctCardDetails,
+  CartProductCardDetails,
   CartProductCard,
   CloseButton,
   Content,
@@ -32,30 +32,30 @@ export function Cart() {
             <Description>
               <CartProductCard>
                 <Image src={img1} alt="" />
-                <CartProcuctCardDetails>
+                <CartProductCardDetails>
                   <p>Camiseta Beyond the Limits</p>
                   <strong>R$ 79.90</strong>
 
                   <footer>Remover</footer>
-                </CartProcuctCardDetails>
+                </CartProductCardDetails>
               </CartProductCard>
               <CartProductCard>
                 <Image src={img1} alt="" />
-                <CartProcuctCardDetails>
+                <CartProductCardDetails>
                   <p>Camiseta Beyond the Limits</p>
                   <strong>R$ 79.90</strong>
 
                   <footer>Remover</footer>
-                </CartProcuctCardDetails>
+                </CartProductCardDetails>
               </CartProductCard>
               <CartProductCard>
                 <Image src={img1} alt="" />
-                <CartProcuctCardDetails>
+                <CartProductCardDetails>
                   <p>Camiseta Beyond the Limits</p>
                   <strong>R$ 79.90</strong>
 
                   <footer>Remover</footer>
-                </CartProcuctCardDetails>
+                </CartProductCardDetails>
               </CartProductCard>
             </Description>
           </div>
@@ -65,8 +65,8 @@ export function Cart() {
               <span>3 itens</span>
             </CartConfirmationQtd>
             <CartConfirmationTotal>
-              <strong>ValorTotal</strong>
-              <span>R$ 270.00</span>
+              <p>ValorTotal</p>
+              <strong>R$ 270.00</strong>
             </CartConfirmationTotal>
             <button>Finalizar Compra</button>
           </CartConfirmationSection>
