@@ -1,8 +1,14 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import Image from 'next/image'
-import { Handbag } from 'phosphor-react'
+import { Handbag, X } from 'phosphor-react'
 import {
+  CartConfirmationQtd,
+  CartConfirmationSection,
+  CartConfirmationTotal,
   CartContainer,
+  CartProcuctCardDetails,
+  CartProductCard,
+  CloseButton,
   Content,
   Description,
   Overlay,
@@ -21,20 +27,52 @@ export function Cart() {
       <Dialog.Portal>
         <Overlay />
         <Content>
-          <Title>Sacola de compras</Title>
-          <Description>
-            <div>
-              <Image src={img1} alt="" />
-              <div>
-                <title>Camiseta Beyond the Limits</title>
-                <p>R$ 79.90</p>
-                <footer>Remover</footer>
-              </div>
-            </div>
-          </Description>
-          <Dialog.Close asChild>
-            <button>Botao</button>
-          </Dialog.Close>
+          <div>
+            <Title>Sacola de compras</Title>
+            <Description>
+              <CartProductCard>
+                <Image src={img1} alt="" />
+                <CartProcuctCardDetails>
+                  <p>Camiseta Beyond the Limits</p>
+                  <strong>R$ 79.90</strong>
+
+                  <footer>Remover</footer>
+                </CartProcuctCardDetails>
+              </CartProductCard>
+              <CartProductCard>
+                <Image src={img1} alt="" />
+                <CartProcuctCardDetails>
+                  <p>Camiseta Beyond the Limits</p>
+                  <strong>R$ 79.90</strong>
+
+                  <footer>Remover</footer>
+                </CartProcuctCardDetails>
+              </CartProductCard>
+              <CartProductCard>
+                <Image src={img1} alt="" />
+                <CartProcuctCardDetails>
+                  <p>Camiseta Beyond the Limits</p>
+                  <strong>R$ 79.90</strong>
+
+                  <footer>Remover</footer>
+                </CartProcuctCardDetails>
+              </CartProductCard>
+            </Description>
+          </div>
+          <CartConfirmationSection>
+            <CartConfirmationQtd>
+              <p>Quantidade</p>
+              <span>3 itens</span>
+            </CartConfirmationQtd>
+            <CartConfirmationTotal>
+              <strong>ValorTotal</strong>
+              <span>R$ 270.00</span>
+            </CartConfirmationTotal>
+            <button>Finalizar Compra</button>
+          </CartConfirmationSection>
+          <CloseButton asChild>
+            <X size={24} />
+          </CloseButton>
         </Content>
       </Dialog.Portal>
     </Dialog.Root>
