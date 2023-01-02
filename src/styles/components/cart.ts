@@ -1,7 +1,53 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { styled } from '..'
 
-export const CartContainer = styled('div', {})
+export const CartContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '0.85rem,',
+  gap: '0.85rem',
+  borderRadius: 8,
+  width: 48,
+  height: 48,
+  border: 'none',
+  cursor: 'pointer',
+
+  position: 'relative',
+
+  background: '$gray800',
+
+  button: {
+    border: 0,
+    background: 'none',
+    color: '$gray300',
+  },
+
+  marginRight: 30,
+})
+
+export const CartLength = styled('div', {
+  position: 'absolute',
+  width: 24,
+  height: 24,
+  right: -7,
+  top: -7,
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '0.5rem',
+
+  borderRadius: '50%',
+  border: '3px solid $gray900',
+  background: '$green300',
+
+  fontWeight: 700,
+  fontSize: '0.75rem',
+  lineHeight: 1.6,
+  color: '$white',
+})
 
 export const Overlay = styled(Dialog.Overlay, {
   position: 'fixed',

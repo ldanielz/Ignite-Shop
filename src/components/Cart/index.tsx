@@ -13,6 +13,7 @@ import {
   Description,
   Overlay,
   Title,
+  CartLength,
 } from '../../styles/components/cart'
 import img1 from '../../assets/shirts/2.png'
 export function Cart() {
@@ -20,8 +21,10 @@ export function Cart() {
     <Dialog.Root>
       <Dialog.Trigger asChild>
         <CartContainer>
-          <button>Cart</button>
-          <Handbag size={24} />
+          <button>
+            <Handbag size={24} />
+          </button>
+          <CartLength>3</CartLength>
         </CartContainer>
       </Dialog.Trigger>
       <Dialog.Portal>
