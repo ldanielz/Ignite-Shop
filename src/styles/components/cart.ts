@@ -12,7 +12,7 @@ export const contentShow = keyframes({
   },
 })
 
-export const CartContainer = styled('div', {
+export const CartContainer = styled('button', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
@@ -24,18 +24,21 @@ export const CartContainer = styled('div', {
   height: 48,
   border: 'none',
   cursor: 'pointer',
-
   position: 'relative',
 
   background: '$gray800',
+  color: '$white',
 
-  button: {
-    border: 0,
-    background: 'none',
-    color: '$gray300',
+  marginRight: 10,
+
+  '&:not(:disabled):hover': {
+    background: '$gray700',
   },
 
-  marginRight: 30,
+  '&:disabled': {
+    color: '$gray500',
+    cursor: 'not-allowed',
+  },
 })
 
 export const CartLength = styled('div', {
@@ -65,7 +68,7 @@ export const Overlay = styled(Dialog.Overlay, {
   width: '100vw',
   height: '100vh',
   inset: 0,
-  background: ' #00000075',
+  background: '#00000075',
 })
 
 export const Content = styled(Dialog.Content, {

@@ -21,12 +21,11 @@ export function Cart() {
     <Dialog.Root>
       <Dialog.Trigger asChild>
         <CartContainer>
-          <button>
-            <Handbag size={24} />
-          </button>
+          <Handbag size={24} weight="bold" />
           <CartLength>3</CartLength>
         </CartContainer>
       </Dialog.Trigger>
+
       <Dialog.Portal>
         <Overlay />
         <Content>
