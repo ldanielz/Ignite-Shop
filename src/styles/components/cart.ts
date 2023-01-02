@@ -1,5 +1,5 @@
-import { styled } from '../../../styles'
 import * as Dialog from '@radix-ui/react-dialog'
+import { styled } from '..'
 
 export const CartContainer = styled('div', {})
 

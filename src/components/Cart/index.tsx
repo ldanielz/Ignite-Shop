@@ -1,8 +1,14 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import Image from 'next/image'
 import { Handbag } from 'phosphor-react'
-import { CartContainer, Content, Description, Overlay, Title } from './styles'
-import img1 from '../../../assets/shirts/2.png'
+import {
+  CartContainer,
+  Content,
+  Description,
+  Overlay,
+  Title,
+} from '../../styles/components/cart'
+import img1 from '../../assets/shirts/2.png'
 export function Cart() {
   return (
     <Dialog.Root>

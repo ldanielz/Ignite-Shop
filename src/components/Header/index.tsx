@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import logoImage from '../../../assets/img/logo-ignite-shop.svg'
+import logoImage from '../../assets/img/logo-ignite-shop.svg'
 import { Cart } from '../Cart'
-import { HeaderContainer } from './styles'
+import { HeaderContainer } from '../../styles/components/header'
 
 export function Header() {
   return (
