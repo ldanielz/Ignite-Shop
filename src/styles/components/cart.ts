@@ -1,5 +1,16 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { styled } from '..'
+import { keyframes, styled } from '..'
+
+export const contentShow = keyframes({
+  '0%': {
+    opacity: 0,
+    transform: ' translate(100%,0%)',
+  },
+  '100%': {
+    opacity: 1,
+    transform: ' translate(0%,0%)',
+  },
+})
 
 export const CartContainer = styled('div', {
   display: 'flex',
@@ -73,6 +84,8 @@ export const Content = styled(Dialog.Content, {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+
+  animation: `${contentShow} 200ms cubic-bezier(0.16, 1, 0.3, 1)`,
 })
 
 export const Title = styled(Dialog.Title, {
