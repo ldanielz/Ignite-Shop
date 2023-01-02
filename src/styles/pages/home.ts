@@ -63,27 +63,3 @@ export const Product = styled(Link, {
     },
   },
 })
-
-export const ArrowsContainer = styled('div', {
-  position: 'absolute',
-  top: '50%',
-  cursor: 'pointer',
-})
-
-export const ArrowPrev = styled('span', {
-  position: 'absolute',
-  width: 136,
-  left: 136,
-  background:
-    'linear-gradient(90deg, rgba(18, 18, 20, 0) 0%, rgba(18, 18, 20, 0.75) 100%)',
-  transform: 'matrix(-1, 0, 0, 1, 0, 0)',
-})
-
-export const ArrowNext = styled('span', {
-  position: 'absolute',
-  width: 136,
-  right: 0,
-  background:
-    'linear-gradient(90deg, rgba(18, 18, 20, 0) 0%, rgba(18, 18, 20, 0.75) 100%)',
-  transform: 'matrix(-1, 0, 0, 1, 0, 0)',
-})
