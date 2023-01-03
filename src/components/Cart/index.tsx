@@ -1,4 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog'
+import { useState, MouseEvent } from 'react'
 import Image from 'next/image'
 import { Handbag, X } from 'phosphor-react'
 import {
@@ -15,14 +16,53 @@ import {
   Title,
   CartLength,
 } from '../../styles/components/cart'
-import img1 from '../../assets/shirts/2.png'
+import { useCart } from '../../hooks/useCart'
+import axios from 'axios'
 export function Cart() {
+  const { cartItems, cartTotalPrice, removeCart } = useCart()
+
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
+    useState(false)
+
+  const formattedTotalPrice = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(cartTotalPrice / 100)
+
+  async function handleBuyProduct() {
+    try {
+      setIsCreatingCheckoutSession(true)
+      const response = await axios.post('/api/checkout', {
+        products: cartItems,
+      })
+
+      const { checkoutUrl } = response.data
+
+      window.location.href = checkoutUrl // redirecionamento para pagina externa
+
+      // router.push('checkout')
+      // redirencionamento para pagina interna
+    } catch (error) {
+      // Conectar com uma ferramenta de observalidade {Datalog / Sentry}
+      setIsCreatingCheckoutSession(false)
+      alert('Falha ao redirecionar o checkout.')
+    }
+  }
+
+  function handleRemoveCartItem(
+    event: MouseEvent<HTMLButtonElement>,
+    productId: string,
+  ) {
+    event.preventDefault()
+    removeCart(productId)
+  }
+
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <CartContainer>
+        <CartContainer disabled={cartItems.length === 0}>
           <Handbag size={24} weight="bold" />
-          <CartLength>3</CartLength>
+          {cartItems.length > 0 && <CartLength>{cartItems.length}</CartLength>}
         </CartContainer>
       </Dialog.Trigger>
 
@@ -32,45 +72,51 @@ export function Cart() {
           <div>
             <Title>Sacola de compras</Title>
             <Description>
-              <CartProductCard>
-                <Image src={img1} alt="" />
-                <CartProductCardDetails>
-                  <p>Camiseta Beyond the Limits</p>
-                  <strong>R$ 79.90</strong>
-
-                  <footer>Remover</footer>
-                </CartProductCardDetails>
-              </CartProductCard>
-              <CartProductCard>
-                <Image src={img1} alt="" />
-                <CartProductCardDetails>
-                  <p>Camiseta Beyond the Limits</p>
-                  <strong>R$ 79.90</strong>
-
-                  <footer>Remover</footer>
-                </CartProductCardDetails>
-              </CartProductCard>
-              <CartProductCard>
-                <Image src={img1} alt="" />
-                <CartProductCardDetails>
-                  <p>Camiseta Beyond the Limits</p>
-                  <strong>R$ 79.90</strong>
-
-                  <footer>Remover</footer>
-                </CartProductCardDetails>
-              </CartProductCard>
+              {cartItems.length > 0 &&
+                cartItems.map((cartItem) => {
+                  return (
+                    <CartProductCard key={cartItem.id}>
+                      <Image
+                        src={cartItem.imageUrl}
+                        alt={cartItem.name}
+                        width={102}
+                        height={93}
+                      />
+                      <CartProductCardDetails>
+                        <p>{cartItem.name}</p>
+                        <strong>{cartItem.price}</strong>
+                        <button
+                          onClick={(event) =>
+                            handleRemoveCartItem(event, cartItem.id)
+                          }
+                        >
+                          Remover
+                        </button>
+                      </CartProductCardDetails>
+                    </CartProductCard>
+                  )
+                })}
             </Description>
           </div>
           <CartConfirmationSection>
             <CartConfirmationQtd>
               <p>Quantidade</p>
-              <span>3 itens</span>
+              <span>
+                {cartItems.length > 1
+                  ? `${cartItems.length} itens`
+                  : `${cartItems.length} item`}
+              </span>
             </CartConfirmationQtd>
             <CartConfirmationTotal>
               <p>ValorTotal</p>
-              <strong>R$ 270.00</strong>
+              <strong>{formattedTotalPrice}</strong>
             </CartConfirmationTotal>
-            <button>Finalizar Compra</button>
+            <button
+              onClick={handleBuyProduct}
+              disabled={isCreatingCheckoutSession}
+            >
+              Finalizar Compra
+            </button>
           </CartConfirmationSection>
           <CloseButton asChild>
             <X size={24} />
