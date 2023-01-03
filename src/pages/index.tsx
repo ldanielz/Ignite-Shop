@@ -19,6 +19,7 @@ import { stripe } from '../lib/stripe'
 
 import 'keen-slider/keen-slider.min.css'
 import { Handbag } from 'phosphor-react'
+import { Header } from '../components/Header'
 interface HomeProps {
   products: {
     id: string
@@ -62,6 +63,7 @@ export default function Home({ products }: HomeProps) {
       <Head>
         <title>Home | Ignite Shop</title>
       </Head>
+      <Header />
 
       <HomeContainer ref={sliderRef} className="keen-slider">
         {products.map((product) => {

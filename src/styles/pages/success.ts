@@ -1,4 +1,15 @@
-import { styled } from '..'
+import { keyframes, styled } from '..'
+
+export const CardHoverAnimation = keyframes({
+  '0%': {
+    zIndex: 1,
+    transform: 'scale(1)',
+  },
+  '100%': {
+    zIndex: 10,
+    transform: 'scale(2)',
+  },
+})
 
 export const SuccessContainer = styled('div', {
   display: 'flex',
@@ -34,6 +45,10 @@ export const SuccessContainer = styled('div', {
       color: '$green300',
     },
   },
+
+  '@bp4': {
+    height: 'calc(100vh - 120px)',
+  },
 })
 
 export const ImageContainer = styled('div', {
@@ -52,5 +67,64 @@ export const ImageContainer = styled('div', {
 
   img: {
     objectFit: 'cover',
+  },
+})
+
+export const ImageListContainer = styled('div', {
+  width: '100%',
+  marginBottom: '3rem',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'row',
+
+  flexFlow: 'wrap',
+})
+
+export const ImageListItem = styled('div', {
+  position: 'relative',
+  width: '7.75rem',
+  height: '7.75rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: 0,
+
+  margin: '0 -1.5rem',
+
+  background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
+  boxShadow: '0px 0px 60px rgba(0, 0, 0, 0.8)',
+  borderRadius: '50%',
+
+  img: {
+    objectFit: 'cover',
+  },
+
+  '&:hover': {
+    zIndex: 10,
+    transform: 'translate(0, -2rem)',
+  },
+
+  span: {
+    position: 'absolute',
+    width: 24,
+    height: 24,
+    right: 12,
+    bottom: 0,
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '0.5rem',
+
+    borderRadius: '50%',
+    border: '3px solid $gray900',
+    background: '$green300',
+
+    fontWeight: 700,
+    fontSize: '0.75rem',
+    lineHeight: 1.6,
+    color: '$white',
   },
 })
