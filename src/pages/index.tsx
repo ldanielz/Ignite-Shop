@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { MouseEvent } from 'react'
 
 import Head from 'next/head'
 
@@ -20,16 +21,23 @@ import { stripe } from '../lib/stripe'
 import 'keen-slider/keen-slider.min.css'
 import { Handbag } from 'phosphor-react'
 import { Header } from '../components/Header'
+import { useCart } from '../hooks/useCart'
+
+interface ProductProps {
+  id: string
+  name: string
+  imageUrl: string
+  price: string
+  priceNumber: number
+  description: string
+  defaultPriceId: string
+}
 interface HomeProps {
-  products: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-  }[]
+  products: ProductProps[]
 }
 
 export default function Home({ products }: HomeProps) {
+  const { addCart } = useCart()
   const [sliderRef] = useKeenSlider({
     mode: 'free-snap',
     rubberband: false,
@@ -53,9 +61,12 @@ export default function Home({ products }: HomeProps) {
     },
   })
 
-  function handleAddCart(event: any) {
+  function handleAddCart(
+    event: MouseEvent<HTMLButtonElement>,
+    product: ProductProps,
+  ) {
     event.preventDefault()
-    console.log(event)
+    addCart(product)
   }
 
   return (
@@ -85,7 +96,9 @@ export default function Home({ products }: HomeProps) {
                   <strong>{product.name}</strong>
                   <span>{product.price}</span>
                 </ProductInfo>
-                <ProductInfoCartIcon onClick={handleAddCart}>
+                <ProductInfoCartIcon
+                  onClick={(event) => handleAddCart(event, product)}
+                >
                   <Handbag size={32} weight="bold" />
                 </ProductInfoCartIcon>
               </ProductInfoWrapper>
@@ -113,6 +126,8 @@ export const getStaticProps: GetStaticProps = async () => {
         style: 'currency',
         currency: 'BRL',
       }).format(price.unit_amount! / 100),
+      priceNumber: price.unit_amount,
+      defaultPriceId: price.id,
     }
   })
 

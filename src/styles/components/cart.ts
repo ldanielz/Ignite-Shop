@@ -103,7 +103,7 @@ export const Title = styled(Dialog.Title, {
   color: '$gray100',
 })
 
-export const Description = styled(Dialog.Description, {
+export const Description = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
@@ -136,9 +136,6 @@ export const CartProductCard = styled('div', {
   padding: 0,
   gap: '1.5rem',
   img: {
-    width: 101.94,
-    height: 93,
-
     background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
     borderRadius: 8,
   },
@@ -163,11 +160,16 @@ export const CartProductCardDetails = styled('div', {
     fontSize: '$md',
     color: '$gray100',
   },
-  footer: {
+  button: {
+    all: 'unset',
     marginTop: '0.5rem',
     fontWeight: 700,
     fontSize: '$nm',
-    color: '$green300',
+    color: '$green500',
+    cursor: 'pointer',
+    '&:not(:disabled):hover': {
+      color: '$green300',
+    },
   },
 })
 
@@ -180,7 +182,7 @@ export const CartConfirmationSection = styled('footer', {
   button: {
     padding: '20px 32px',
     gap: '0.75rem',
-    background: '$green300',
+    background: '$green500',
     borderRadius: 8,
     marginTop: '3.125',
 
@@ -188,6 +190,14 @@ export const CartConfirmationSection = styled('footer', {
     fontWeight: 700,
     fontSize: '$md',
     lineHeight: 1.6,
+
+    transition: 'background 150ms',
+
+    cursor: 'pointer',
+
+    '&:not(:disabled):hover': {
+      background: '$green300',
+    },
   },
 })
 export const CartConfirmationQtd = styled('div', {
