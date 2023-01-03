@@ -4,7 +4,13 @@ import Head from 'next/head'
 
 import Image from 'next/image'
 
-import { HomeContainer, Product } from '../styles/pages/home'
+import {
+  HomeContainer,
+  Product,
+  ProductInfo,
+  ProductInfoCartIcon,
+  ProductInfoWrapper,
+} from '../styles/pages/home'
 
 import { useKeenSlider } from 'keen-slider/react'
 
@@ -12,6 +18,8 @@ import Stripe from 'stripe'
 import { stripe } from '../lib/stripe'
 
 import 'keen-slider/keen-slider.min.css'
+import { Handbag } from 'phosphor-react'
+import { Header } from '../components/Header'
 interface HomeProps {
   products: {
     id: string
@@ -45,11 +53,17 @@ export default function Home({ products }: HomeProps) {
     },
   })
 
+  function handleAddCart(event: any) {
+    event.preventDefault()
+    console.log(event)
+  }
+
   return (
     <>
       <Head>
         <title>Home | Ignite Shop</title>
       </Head>
+      <Header />
 
       <HomeContainer ref={sliderRef} className="keen-slider">
         {products.map((product) => {
@@ -66,10 +80,15 @@ export default function Home({ products }: HomeProps) {
                 width={520}
                 height={480}
               />
-              <footer>
-                <strong>{product.name}</strong>
-                <span>{product.price}</span>
-              </footer>
+              <ProductInfoWrapper>
+                <ProductInfo>
+                  <strong>{product.name}</strong>
+                  <span>{product.price}</span>
+                </ProductInfo>
+                <ProductInfoCartIcon onClick={handleAddCart}>
+                  <Handbag size={32} weight="bold" />
+                </ProductInfoCartIcon>
+              </ProductInfoWrapper>
             </Product>
           )
         })}

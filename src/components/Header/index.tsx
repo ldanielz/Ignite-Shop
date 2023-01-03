@@ -5,14 +5,16 @@ import logoImage from '../../assets/img/logo-ignite-shop.svg'
 import { Cart } from '../Cart'
 import { HeaderContainer } from '../../styles/components/header'
 
-export function Header() {
+interface HeaderProps {
+  success?: boolean
+}
+export function Header({ success }: HeaderProps) {
   return (
-    <HeaderContainer>
+    <HeaderContainer success={success}>
       <Link href={'/'} prefetch={false}>
         <Image src={logoImage} alt="" />
       </Link>
-
-      <Cart />
+      {success ?? <Cart />}
     </HeaderContainer>
   )
 }

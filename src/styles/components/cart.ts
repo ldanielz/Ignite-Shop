@@ -1,7 +1,18 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { styled } from '..'
+import { keyframes, styled } from '..'
 
-export const CartContainer = styled('div', {
+export const contentShow = keyframes({
+  '0%': {
+    opacity: 0,
+    transform: ' translate(100%,0%)',
+  },
+  '100%': {
+    opacity: 1,
+    transform: ' translate(0%,0%)',
+  },
+})
+
+export const CartContainer = styled('button', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
@@ -13,18 +24,21 @@ export const CartContainer = styled('div', {
   height: 48,
   border: 'none',
   cursor: 'pointer',
-
   position: 'relative',
 
   background: '$gray800',
+  color: '$white',
 
-  button: {
-    border: 0,
-    background: 'none',
-    color: '$gray300',
+  marginRight: 10,
+
+  '&:not(:disabled):hover': {
+    background: '$gray700',
   },
 
-  marginRight: 30,
+  '&:disabled': {
+    color: '$gray500',
+    cursor: 'not-allowed',
+  },
 })
 
 export const CartLength = styled('div', {
@@ -54,7 +68,7 @@ export const Overlay = styled(Dialog.Overlay, {
   width: '100vw',
   height: '100vh',
   inset: 0,
-  background: ' #00000075',
+  background: '#00000075',
 })
 
 export const Content = styled(Dialog.Content, {
@@ -73,6 +87,8 @@ export const Content = styled(Dialog.Content, {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+
+  animation: `${contentShow} 200ms cubic-bezier(0.16, 1, 0.3, 1)`,
 })
 
 export const Title = styled(Dialog.Title, {

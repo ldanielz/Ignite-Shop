@@ -16,6 +16,8 @@ export const {
       white: '#fff',
       gray900: '#121214',
       gray800: '#202024',
+      gray700: '#323238',
+      gray500: '#8F8F99',
       gray300: '#c4c4cc',
       gray100: '#e1e1e6',
 
@@ -28,5 +30,11 @@ export const {
       xl: '1.5rem',
       '2xl': '2rem',
     },
+  },
+  media: {
+    bp1: '(min-width: 640px)',
+    bp2: '(min-width: 768px)',
+    bp3: '(min-width: 1024px)',
+    bp4: '(min-width: 1366px)',
   },
 })

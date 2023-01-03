@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
 import Stripe from 'stripe'
+import { Header } from '../../components/Header'
 import { stripe } from '../../lib/stripe'
 import {
   ImageContainer,
@@ -54,6 +55,7 @@ export default function Products({ product }: ProductProps) {
       <Head>
         <title>{product.name} | Ignite Shop</title>
       </Head>
+      <Header />
       <ProductContainer>
         <ImageContainer>
           <Image
